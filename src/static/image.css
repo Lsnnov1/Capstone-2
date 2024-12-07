@@ -1,0 +1,35 @@
+.image-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .food-image {
+    border: 3px solid black;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .load-image-button {
+    background-color: #fa6b43;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: solid black 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .load-image-button:hover {
+    background-color: #e55c36;
+  }
+  
