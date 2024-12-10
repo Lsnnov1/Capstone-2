@@ -8,6 +8,7 @@ const Quiz = () => {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [userAnswer, setUserAnswer] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [score, setScore] = useState(0); // Score state
 
   // Memoized fetchTrivia function
   const fetchTrivia = useCallback(async () => {
@@ -20,14 +21,19 @@ const Quiz = () => {
       setUserAnswer(null); // Reset user answer for each new question
     }
     setLoading(false);
-  }, []); // No dependencies needed since no API key is passed
+  }, []);
 
   useEffect(() => {
     fetchTrivia();
-  }, [fetchTrivia]); // Ensure fetchTrivia is only called once per quiz
+  }, [fetchTrivia]);
 
   const handleAnswer = (answer) => {
-    setUserAnswer(answer === correctAnswer ? 'Correct!' : `Incorrect! The correct answer is: ${correctAnswer}`);
+    if (answer === correctAnswer) {
+      setUserAnswer('Correct!');
+      setScore(prevScore => prevScore + 1); // Increase score for correct answers
+    } else {
+      setUserAnswer(`Incorrect! The correct answer is: ${correctAnswer}`);
+    }
   };
 
   const handleNextQuestion = () => {
@@ -54,27 +60,24 @@ const Quiz = () => {
   return (
     <div>
       <h2>Food Trivia</h2>
+      <p>Score: {score}</p> {/* Display the score */}
       <p>{question}</p>
       <div>
         {options.map((option, index) => (
           <button 
             key={index} 
             onClick={() => handleAnswer(option)} 
-            style={getButtonStyle(option)}  // Apply the correct button style based on the answer
-            disabled={isAnswerSelected}  // Disable buttons after an answer is selected
+            style={getButtonStyle(option)} 
+            disabled={isAnswerSelected}
           >
             {option}
           </button>
         ))}
       </div>
       {userAnswer && <p>{userAnswer}</p>}
-      
       <button onClick={handleNextQuestion} disabled={!userAnswer}>Next Question</button>
     </div>
   );
 };
 
 export default Quiz;
-
-
-// ADD SCORE COUNTER MAYBE?

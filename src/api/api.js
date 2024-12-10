@@ -55,4 +55,3 @@ export const getTriviaQuestion = async () => {
     return null; // Return null in case of error
   }
 };
-

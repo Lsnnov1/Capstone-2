@@ -1,5 +1,37 @@
 # Capstone Project Two
 
+
+# Food Trivia & Facts App
+
+## Overview
+An interactive web application offering food trivia, facts, and images. The app now supports user authentication and CRUD operations for managing quizzes and user accounts.
+
+## Features
+- Food Trivia Quiz with multiple-choice questions.
+- Random Food Facts and Food Images.
+- User authentication (registration, login, logout).
+- Admin features for managing quizzes (add, update, delete).
+
+## Technologies
+- Frontend: React, CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB/PostgreSQL/MySQL
+- APIs: Eaxeli (Trivia), Foodish (Images)
+- Deployment: Vercel (Frontend), Heroku/Render (Backend)
+
+## Deployment
+- [Live Application Link](https://your-deployment-link.com)
+- [Backend API Documentation](https://your-backend-docs-link.com)
+
+## Instructions to Run Locally
+1. Clone the repository.
+2. Install dependencies with `npm install` (both frontend and backend).
+3. Configure environment variables:
+   - Backend: `.env` file with database and JWT configurations.
+   - Frontend: `.env` file with API base URL.
+4. Run the backend with `npm start` and the frontend with `npm start`.
+
+
 We have broken down the Capstone Project into easy-to-follow steps. Each step of the capstone contains a link with instructions for that step. You may notice this secondCapstone follows a similar pattern to your first Capstone, however, there are key differences. 
 
 ## Overview

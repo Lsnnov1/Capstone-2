@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ token }) => {
   return (
     <nav style={styles.nav}>
       <h1 style={styles.title}>Food Fun</h1>
@@ -36,6 +36,41 @@ const Navbar = () => {
             Fun Facts
           </NavLink>
         </li>
+        {!token ? (
+          <>
+            <li>
+              <NavLink
+                to="/login"
+                style={({ isActive }) =>
+                  isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+                }
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                style={({ isActive }) =>
+                  isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+                }
+              >
+                Signup
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <li>
+            <NavLink
+              to="/profile"
+              style={({ isActive }) =>
+                isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+              }
+            >
+              Profile
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
@@ -73,6 +108,5 @@ const styles = {
     textDecoration: 'underline',
   },
 };
-
 
 export default Navbar;

@@ -1,0 +1,24 @@
+CREATE TABLE quizzes (
+  id SERIAL PRIMARY KEY,
+  question VARCHAR(255) NOT NULL,
+  options TEXT[] NOT NULL, 
+  correct_answer VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE public.users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO quizzes (question, options, correct_answer, category)
+VALUES (
+    'What is the capital of France?',
+    ARRAY['Paris', 'London', 'Berlin', 'Rome'],
+    'Paris',
+    'Geography'  
+);
