@@ -20,8 +20,8 @@ An interactive web application offering food trivia, facts, and images. The app 
 - Deployment: Vercel (Frontend), Heroku/Render (Backend)
 
 ## Deployment
-- [Live Application Link](https://your-deployment-link.com)     <!-- INSERT DEPLOYMENT LINK -->
-- [Backend API Documentation](https://your-backend-docs-link.com <!-- INSERT BACKEND LINK -->
+- [Live Application Link](https://capstone-2-git-dev-cavon-rs-projects.vercel.app)     <!-- INSERT DEPLOYMENT LINK -->
+- [Backend API Documentation](https://git.heroku.com/evening-plateau-04832.git) <!-- INSERT BACKEND LINK -->
 
 ## Instructions to Run Locally
 1. Clone the repository.
