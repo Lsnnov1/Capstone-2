@@ -1,54 +1,60 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const pool = require('../db'); // PostgreSQL connection
-
+const pool = require('../db'); 
 const router = express.Router();
+const authenticateToken = require('../middleware/authenticateToken');
 
+
+// Middleware for authentication
+const authenticate = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) return res.status(401).json({ error: 'Access denied' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+// Register route
 router.post('/register', async (req, res) => {
-  const { email, password, username } = req.body; // Use `username` instead of `name`
-
+  const { email, password, username } = req.body;
   if (!email || !password || !username) {
-    console.log('Error: Email, password, or username missing');
     return res.status(400).json({ error: 'Email, password, and username are required' });
   }
 
   try {
-    // Check if user already exists
-    console.log(`Checking if user with email ${email} already exists`);
-    const result = await pool.query('SELECT * FROM public.users WHERE email = $1', [email]);
-    
-    if (result.rows.length > 0) {
-      console.log('Error: Email already in use');
+    // Check if user exists
+    const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (userExists.rows.length > 0) {
       return res.status(400).json({ error: 'Email already in use' });
     }
 
-    // Hash the password
-    console.log('Hashing the password');
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Insert the new user into the database
-    console.log('Inserting new user into the database');
-    const insertResult = await pool.query(
-      'INSERT INTO public.users (email, password, username) VALUES ($1, $2, $3) RETURNING *',
-      [email, hashedPassword, username]
+    // Hash password and insert new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const result = await pool.query(
+      'INSERT INTO public.users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
+      [username, email, hashedPassword]
     );
 
-    console.log(`User created successfully with ID: ${insertResult.rows[0].id}`);
-    res.status(201).json({ message: 'User registered successfully', user: insertResult.rows[0] });
+    res.status(201).json({ message: 'User registered successfully', user: result.rows[0] });
   } catch (err) {
-    console.error('Error occurred during registration:', err);
+    console.error('Registration Error:', err.message);
     res.status(500).json({ error: 'Registration failed' });
   }
 });
 
-
-
-
-// User Login route
+// Login route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required' });
+  }
 
   try {
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -57,11 +63,13 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
 
+    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
 
+    // Generate JWT token with a secret key
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ message: 'Login successful', token });
   } catch (err) {
@@ -69,39 +77,40 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Get Profile route (to fetch user profile details)
-router.get('/profile', async (req, res) => {
-  const userId = req.user.userId;
 
+// Profile route (GET)
+router.get('/profile', authenticate, async (req, res) => {
   try {
+    const userId = req.user.userId;  // Get userId from the JWT payload
     const result = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
-    const user = result.rows[0];
-    if (!user) {
+
+    if (result.rows.length === 0) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Fetch highest quiz score (assuming there's a quiz_scores table)
-    const quizResult = await pool.query('SELECT MAX(score) AS highest_score FROM quiz_scores WHERE user_id = $1', [userId]);
-    const highestScore = quizResult.rows[0].highest_score || 0;
-
-    res.json({ user, highestScore });
+    const user = result.rows[0];
+    res.json({ user });  // Return user data to the client
   } catch (err) {
-    res.status(500).json({ error: 'Profile fetch failed' });
+    res.status(500).json({ error: 'Failed to fetch profile' });
   }
 });
 
-// Edit Profile route (update name)
-router.put('/profile', async (req, res) => {
+router.put('/profile', authenticateToken, async (req, res) => {
   const { name } = req.body;
   const userId = req.user.userId;
 
   try {
-    const result = await pool.query('UPDATE users SET name = $1 WHERE id = $2 RETURNING *', [name, userId]);
+    const result = await pool.query(
+      'UPDATE users SET username = $1 WHERE id = $2 RETURNING *',
+      [name, userId]
+    );
     const updatedUser = result.rows[0];
-    res.json({ message: 'Profile updated', user: updatedUser });
+    res.json({ user: updatedUser });
+    console.log(updatedUser)
   } catch (err) {
-    res.status(500).json({ error: 'Profile update failed' });
+    console.error('Profile Update Error:', err);
+    res.status(500).json({ error: 'Failed to update profile' });
   }
 });
 
-module.exports = router;
+module.exports = router

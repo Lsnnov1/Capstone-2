@@ -20,8 +20,8 @@ An interactive web application offering food trivia, facts, and images. The app 
 - Deployment: Vercel (Frontend), Heroku/Render (Backend)
 
 ## Deployment
-- [Live Application Link](https://your-deployment-link.com)
-- [Backend API Documentation](https://your-backend-docs-link.com)
+- [Live Application Link](https://your-deployment-link.com)     <!-- INSERT DEPLOYMENT LINK -->
+- [Backend API Documentation](https://your-backend-docs-link.com <!-- INSERT BACKEND LINK -->
 
 ## Instructions to Run Locally
 1. Clone the repository.

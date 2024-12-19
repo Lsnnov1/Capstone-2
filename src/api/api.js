@@ -23,9 +23,8 @@ export const getRandomFoodImage = async () => {
 // Fetch a trivia question with options from the Eaxeli API
 export const getTriviaQuestion = async () => {
   try {
-    const response = await axios.get(EAXELI_API); // No API key needed for this endpoint
-    const triviaData = response.data; // Assuming the response has the same structure
-    console.log("Full trivia data:", triviaData);  // Log the entire response
+    const response = await axios.get(EAXELI_API); // No API key needed
+    const triviaData = response.data;
 
     // Check if the trivia data is valid
     if (!triviaData || !triviaData.questions || triviaData.questions.length === 0) {
@@ -34,7 +33,7 @@ export const getTriviaQuestion = async () => {
     }
 
     // Get the first trivia question
-    const triviaItem = triviaData.questions[0]; // Assuming you're working with the first question
+    const triviaItem = triviaData.questions[0]; 
 
     const question = triviaItem.question;
     const options = triviaItem.options; // Options are already provided in the API response

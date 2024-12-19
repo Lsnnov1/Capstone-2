@@ -8,14 +8,13 @@ import Fact from './components/Fact';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage'; 
 import ProfilePage from './components/ProfilePage';
- 
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token')); // Track the auth token
 
   return (
     <Router>
-      <Navbar token={token} />
+      <Navbar token={token} setToken={setToken} /> {/* Pass setToken here */}
       <Routes>
         <Route path="/trivia" element={<Quiz />} />
         <Route path="/image" element={<Image />} />

@@ -1,6 +1,6 @@
-import '../static/Quiz.css'
 import React, { useState, useEffect, useCallback } from 'react';
 import { getTriviaQuestion } from '../api/api';
+import '../static/Quiz.css';
 
 const Quiz = () => {
   const [question, setQuestion] = useState('');

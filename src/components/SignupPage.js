@@ -16,7 +16,7 @@ const SignupPage = () => {
       const response = await axios.post('http://localhost:5000/auth/register', {
         email,
         password,
-        username, // Updated to match the backend
+        username, 
       });
       if (response.data && response.data.message) {
         setMessage(response.data.message);
@@ -34,7 +34,7 @@ const SignupPage = () => {
 
   return (
     <div>
-      <h2>Sign Up</h2>
+      <h2>Sign Up!</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {message && <p style={{ color: 'green' }}>{message}</p>}
       <form onSubmit={handleSubmit}>
@@ -54,9 +54,9 @@ const SignupPage = () => {
         />
         <input
           type="text"
-          value={username} // Updated to match the state name
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username" // Updated placeholder for clarity
+          placeholder="Username" 
           required
         />
         <button type="submit">Sign Up</button>

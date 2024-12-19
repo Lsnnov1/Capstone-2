@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ProfilePage = ({ token }) => {
+const ProfilePage = ({ token, setToken }) => {
   const [user, setUser] = useState({});
   const [highestScore, setHighestScore] = useState(0);
   const [newName, setNewName] = useState('');
@@ -13,6 +13,7 @@ const ProfilePage = ({ token }) => {
         const response = await axios.get('http://localhost:5000/auth/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log('Token:', token);
         setUser(response.data.user);
         setHighestScore(response.data.highestScore);
       } catch (err) {
@@ -42,7 +43,7 @@ const ProfilePage = ({ token }) => {
     <div>
       <h2>Profile</h2>
       {error && <p>{error}</p>}
-      <p>Name: {user.name}</p>
+      <p>Name: {user.username}</p>
       <p>Email: {user.email}</p>
       <p>Highest Quiz Score: {highestScore}</p>
 
@@ -53,6 +54,8 @@ const ProfilePage = ({ token }) => {
         placeholder="New name"
       />
       <button onClick={handleNameChange}>Update Name</button>
+
+
     </div>
   );
 };

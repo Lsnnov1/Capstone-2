@@ -1,12 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const userRoutes = require('./routes/userRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
-const logger = require('./logger');  // Import the logger
+const logger = require('./logger')
 
 // Initialize dotenv to access environment variables
 dotenv.config();
@@ -49,19 +48,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/quizzes', quizRoutes);
 app.use('/auth', authRoutes);
 
-// Example login route
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  // Validate user credentials here (assuming user is found and validated)
-  const user = { id: 1, email }; // Placeholder, replace with real user lookup logic
-
-  // Create JWT token for the authenticated user
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-  // Send token back to the client
-  res.json({ message: 'Login successful', token });
-});
 
 // Root route
 app.get('/', (req, res) => {
@@ -77,4 +63,6 @@ app.use((err, req, res, next) => {
 // Start the server
 app.listen(5000, () => {
   logger.info('Server running on http://localhost:5000');
+
 });
+

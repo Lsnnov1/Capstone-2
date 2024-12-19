@@ -22,3 +22,7 @@ VALUES (
     'Paris',
     'Geography'  
 );
+
+
+INSERT INTO public.users (username, email, password)
+VALUES ('testuser', 'testuser@example.com', '$2a$10$Y6s3Qk4u7JqNcJgMeIM.Z6MkglNpeN12J6i5l7ie7p4xdl7tsIR2a'); 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = ({ setToken }) => {
   const [email, setEmail] = useState('');
@@ -10,27 +10,27 @@ const LoginPage = ({ setToken }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      
-      // Ensure that the response contains the expected data
+      const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+
       if (response && response.data) {
         const { token } = response.data;
         setToken(token);
-        localStorage.setItem('token', token); // Optionally store token in localStorage
-        navigate('/profile'); // Redirect to profile page using useNavigate
+        localStorage.setItem('token', token); // Store token in localStorage
+        navigate('/profile'); // Redirect to profile page
       } else {
         setErrorMessage('Invalid response data');
       }
     } catch (error) {
-      setErrorMessage('Failed to log in. Please check your credentials.');
+      setErrorMessage(error.response?.data?.error || 'Failed to log in. Please check your credentials.');
       console.error('Login Error:', error);
     }
   };
 
   return (
     <div>
+        <h2>Login!</h2>
       <form onSubmit={handleSubmit}>
         <input 
           type="email" 

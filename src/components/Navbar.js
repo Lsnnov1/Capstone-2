@@ -1,7 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ token }) => {
+const Navbar = ({ token, setToken }) => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    setToken(null); // Clear the token in App state
+    localStorage.removeItem('token'); // Remove token from local storage
+    navigate('/login'); // Redirect to the login page
+  };
+
   return (
     <nav style={styles.nav}>
       <h1 style={styles.title}>Food Fun</h1>
@@ -60,16 +68,23 @@ const Navbar = ({ token }) => {
             </li>
           </>
         ) : (
-          <li>
-            <NavLink
-              to="/profile"
-              style={({ isActive }) =>
-                isActive ? { ...styles.link, ...styles.activeLink } : styles.link
-              }
-            >
-              Profile
-            </NavLink>
-          </li>
+          <>
+            <li>
+              <NavLink
+                to="/profile"
+                style={({ isActive }) =>
+                  isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+                }
+              >
+                Profile
+              </NavLink>
+            </li>
+            <li>
+              <button onClick={handleSignOut} style={styles.link}>
+                Sign Out
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </nav>
@@ -101,6 +116,9 @@ const styles = {
     textDecoration: 'none',
     fontSize: '18px',
     color: '#333',
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
   },
   activeLink: {
     fontWeight: 'bold',
