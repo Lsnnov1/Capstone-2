@@ -25,7 +25,8 @@ app.use(express.json());
 const allowedOrigins = [
   'http://localhost:3000',
   'http://10.100.80.110:3000',
-  'http://10.100.68.106:3000'
+  'http://10.100.68.106:3000',
+  'https://capstone-2-git-dev-cavon-rs-projects.vercel.app'
 ];
 
 const corsOptions = {

@@ -297,3 +297,7 @@
 2024-12-19T17:44:34.318Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
 2024-12-19T17:44:34.327Z [[32minfo[39m]: Request received: GET /auth/profile
 2024-12-19T17:44:34.375Z [[32minfo[39m]: Request received: GET /auth/profile
+2024-12-19T19:05:12.393Z [[32minfo[39m]: Request received: OPTIONS /auth/register
+2024-12-19T19:05:12.396Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-19T19:05:21.483Z [[32minfo[39m]: Request received: OPTIONS /auth/register
+2024-12-19T19:05:21.484Z [[31merror[39m]: Error occurred: Not allowed by CORS
