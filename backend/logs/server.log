@@ -301,3 +301,6 @@
 2024-12-19T19:05:12.396Z [[31merror[39m]: Error occurred: Not allowed by CORS
 2024-12-19T19:05:21.483Z [[32minfo[39m]: Request received: OPTIONS /auth/register
 2024-12-19T19:05:21.484Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-19T20:04:12.858Z [[32minfo[39m]: Server running on http://localhost:5000
+2024-12-19T20:05:07.694Z [[32minfo[39m]: Request received: OPTIONS /auth/register
+2024-12-19T20:05:07.699Z [[32minfo[39m]: Request received: POST /auth/register
