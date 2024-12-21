@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SignUpPage = () => {
+const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Renamed from "name"
+  const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
@@ -65,4 +65,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignupPage;

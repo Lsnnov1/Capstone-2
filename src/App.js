@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Quiz from './components/Quiz';
 import Image from './components/image';
 import Fact from './components/Fact';
-import SignUpPage from './components/SignUpPage';
+import SignupPage from './components/SignUpPage';
 import LoginPage from './components/LoginPage'; 
 import ProfilePage from './components/ProfilePage';
 
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/image" element={<Image />} />
         <Route path="/facts" element={<Fact />} />
         
-        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage setToken={setToken} />} />
         
         {/* Protect the Profile Page route */}
