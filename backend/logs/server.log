@@ -318,3 +318,6 @@
 2024-12-21T18:49:19.686Z [[32minfo[39m]: Request received: OPTIONS /auth/login
 2024-12-21T18:49:19.686Z [[31merror[39m]: Error occurred: Not allowed by CORS
 2024-12-21T19:35:59.371Z [[32minfo[39m]: Server running on port 5000
+2024-12-21T20:53:53.484Z [[32minfo[39m]: Server running on port 5000
+2024-12-21T20:53:57.709Z [[32minfo[39m]: Request received: OPTIONS /auth/register
+2024-12-21T20:53:57.715Z [[32minfo[39m]: Request received: POST /auth/register
