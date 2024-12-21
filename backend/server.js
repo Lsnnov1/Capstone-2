@@ -6,6 +6,7 @@ const userRoutes = require('./routes/userRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
 const logger = require('./logger')
+const PORT = process.env.PORT || 5000;
 
 // Initialize dotenv to access environment variables
 dotenv.config();
@@ -62,8 +63,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(5000, () => {
-  logger.info('Server running on http://localhost:5000');
-
-});
+app.listen(PORT, () => {
+    logger.info(`Server running on port ${PORT}`);
+  });
 

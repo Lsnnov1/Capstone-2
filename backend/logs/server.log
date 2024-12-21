@@ -304,3 +304,16 @@
 2024-12-19T20:04:12.858Z [[32minfo[39m]: Server running on http://localhost:5000
 2024-12-19T20:05:07.694Z [[32minfo[39m]: Request received: OPTIONS /auth/register
 2024-12-19T20:05:07.699Z [[32minfo[39m]: Request received: POST /auth/register
+2024-12-21T18:43:14.822Z [[32minfo[39m]: Server running on http://localhost:5000
+2024-12-21T18:43:19.893Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:43:19.894Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-21T18:43:22.354Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:43:22.355Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-21T18:43:52.011Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:43:52.012Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-21T18:45:32.720Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:45:32.721Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-21T18:45:34.897Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:45:34.898Z [[31merror[39m]: Error occurred: Not allowed by CORS
+2024-12-21T18:49:19.686Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-21T18:49:19.686Z [[31merror[39m]: Error occurred: Not allowed by CORS
