@@ -21,7 +21,7 @@ An interactive web application offering food trivia, facts, and images. The app 
 
 ## Deployment
 - [Live Application Link](https://capstone-2-git-dev-cavon-rs-projects.vercel.app)     <!-- INSERT DEPLOYMENT LINK -->
-- [Backend API Documentation](https://git.heroku.com/evening-plateau-04832.git) <!-- INSERT BACKEND LINK -->
+- [Backend API Documentation](http://localhost:5000/) <!-- INSERT BACKEND LINK -->
 
 ## Instructions to Run Locally
 1. Clone the repository.

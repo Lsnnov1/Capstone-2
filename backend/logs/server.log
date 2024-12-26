@@ -321,3 +321,30 @@
 2024-12-21T20:53:53.484Z [[32minfo[39m]: Server running on port 5000
 2024-12-21T20:53:57.709Z [[32minfo[39m]: Request received: OPTIONS /auth/register
 2024-12-21T20:53:57.715Z [[32minfo[39m]: Request received: POST /auth/register
+2024-12-26T01:35:31.750Z [[32minfo[39m]: Server running on port 5000
+2024-12-26T01:36:36.907Z [[32minfo[39m]: Request received: OPTIONS /auth/register
+2024-12-26T01:36:36.911Z [[32minfo[39m]: Request received: POST /auth/register
+2024-12-26T01:37:08.644Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-26T01:37:08.645Z [[32minfo[39m]: Request received: POST /auth/login
+2024-12-26T01:37:08.790Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T01:37:08.794Z [[32minfo[39m]: Request received: GET /auth/profile
+2024-12-26T01:37:27.360Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T01:37:27.361Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T01:37:42.762Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T01:37:42.763Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T01:38:06.708Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T01:38:06.710Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T03:03:06.880Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T03:03:06.882Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T03:03:11.592Z [[32minfo[39m]: Request received: GET /auth/profile
+2024-12-26T03:03:26.221Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T03:03:26.223Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T03:03:39.131Z [[32minfo[39m]: Request received: OPTIONS /auth/login
+2024-12-26T03:03:39.133Z [[32minfo[39m]: Request received: POST /auth/login
+2024-12-26T03:03:39.290Z [[32minfo[39m]: Request received: OPTIONS /auth/profile
+2024-12-26T03:03:39.292Z [[32minfo[39m]: Request received: GET /auth/profile
+2024-12-26T03:03:43.802Z [[32minfo[39m]: Request received: PUT /auth/profile
+2024-12-26T03:11:59.972Z [[32minfo[39m]: Request received: GET /
+2024-12-26T03:12:27.147Z [[32minfo[39m]: Request received: GET /profile
+2024-12-26T03:14:34.025Z [[32minfo[39m]: Request received: GET /authRoutes
+2024-12-26T03:24:27.132Z [[32minfo[39m]: Request received: GET /
