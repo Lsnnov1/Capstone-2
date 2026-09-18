@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const sanitizeUser = require('../utils/sanitizeUser');
 const router = express.Router();
 const logger = require('../logger');
 const authenticateToken = require('../middleware/authenticateToken');
@@ -32,7 +33,7 @@ router.post('/signup', async (req, res) => {
       [email, hashedPassword, name]
     );
     logger.info(`User created with email: ${email}`);
-    res.status(201).json({ message: 'User registered successfully', user: insertResult.rows[0] });
+    res.status(201).json({ message: 'User registered successfully', user: sanitizeUser(insertResult.rows[0]) });
   } catch (err) {
     logger.error('Error during signup: ', err);
     res.status(500).json({ error: 'Registration failed' });
@@ -86,7 +87,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
   
       // Fetch highest quiz score
       const quizResult = await pool.query('SELECT MAX(score) AS highest_score FROM quiz_scores WHERE user_id = $1', [userId]);
-      res.json({ user, highestScore: quizResult.rows[0]?.highest_score || 0 });
+      res.json({ user: sanitizeUser(user), highestScore: quizResult.rows[0]?.highest_score || 0 });
     } catch (err) {
       console.error('Profile Fetch Error:', err);
       res.status(500).json({ error: 'Profile fetch failed' });
@@ -103,7 +104,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
         [name, userId]
       );
       const updatedUser = result.rows[0];
-      res.json({ user: updatedUser });
+      res.json({ user: sanitizeUser(updatedUser) });
     } catch (err) {
       console.error('Profile Update Error:', err);
       res.status(500).json({ error: 'Failed to update profile' });

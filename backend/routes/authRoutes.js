@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db'); 
+const sanitizeUser = require('../utils/sanitizeUser');
 const router = express.Router();
 const authenticateToken = require('../middleware/authenticateToken');
 
@@ -41,7 +42,7 @@ router.post('/register', async (req, res) => {
       [username, email, hashedPassword]
     );
 
-    res.status(201).json({ message: 'User registered successfully', user: result.rows[0] });
+    res.status(201).json({ message: 'User registered successfully', user: sanitizeUser(result.rows[0]) });
   } catch (err) {
     console.error('Registration Error:', err.message);
     res.status(500).json({ error: 'Registration failed' });
@@ -89,7 +90,7 @@ router.get('/profile', authenticate, async (req, res) => {
     }
 
     const user = result.rows[0];
-    res.json({ user });  // Return user data to the client
+    res.json({ user: sanitizeUser(user) });  // Return user data (without the password hash) to the client
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch profile' });
   }
@@ -105,7 +106,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
       [name, userId]
     );
     const updatedUser = result.rows[0];
-    res.json({ user: updatedUser });
+    res.json({ user: sanitizeUser(updatedUser) });
     console.log(updatedUser)
   } catch (err) {
     console.error('Profile Update Error:', err);
