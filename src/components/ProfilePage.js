@@ -10,7 +10,7 @@ const ProfilePage = ({ token, setToken }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/auth/profile', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log('Token:', token);
@@ -29,7 +29,7 @@ const ProfilePage = ({ token, setToken }) => {
   const handleNameChange = async () => {
     try {
       const response = await axios.put(
-        'http://localhost:5000/auth/profile',
+        `${process.env.REACT_APP_API_URL}/auth/profile`,
         { name: newName },
         { headers: { Authorization: `Bearer ${token}` } }
       );

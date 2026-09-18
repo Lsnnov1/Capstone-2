@@ -6,10 +6,10 @@ const userRoutes = require('./routes/userRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
 const logger = require('./logger')
-const PORT = process.env.PORT || 5000;
-
 // Initialize dotenv to access environment variables
 dotenv.config();
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -25,9 +25,10 @@ app.use(express.json());
 // CORS Configuration
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://10.100.80.110:3000',
-  'http://10.100.68.106:3000',
-  'https://capstone-2-git-dev-cavon-rs-projects.vercel.app'
+  'https://capstone-2-lemon-alpha.vercel.app',
+  'https://capstone-2-git-dev-cavon-rs-projects.vercel.app',
+  // Extra origins can be supplied as a comma-separated list in ALLOWED_ORIGINS
+  ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()) : []),
 ];
 
 const corsOptions = {

@@ -26,3 +26,11 @@ VALUES (
 
 INSERT INTO public.users (username, email, password)
 VALUES ('testuser', 'testuser@example.com', '$2a$10$Y6s3Qk4u7JqNcJgMeIM.Z6MkglNpeN12J6i5l7ie7p4xdl7tsIR2a'); 
+
+
+CREATE TABLE IF NOT EXISTS public.quiz_scores (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  score INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
