@@ -1,32 +1,21 @@
-CREATE TABLE quizzes (
+-- Food Fun database schema (PostgreSQL)
+-- Run once on a new database, then run seed-quizzes.sql to load the trivia questions.
+
+CREATE TABLE IF NOT EXISTS public.quizzes (
   id SERIAL PRIMARY KEY,
-  question VARCHAR(255) NOT NULL,
-  options TEXT[] NOT NULL, 
+  question VARCHAR(255) NOT NULL UNIQUE,
+  options TEXT[] NOT NULL,
   correct_answer VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE public.users (
+CREATE TABLE IF NOT EXISTS public.users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-INSERT INTO quizzes (question, options, correct_answer, category)
-VALUES (
-    'What is the capital of France?',
-    ARRAY['Paris', 'London', 'Berlin', 'Rome'],
-    'Paris',
-    'Geography'  
-);
-
-
-INSERT INTO public.users (username, email, password)
-VALUES ('testuser', 'testuser@example.com', '$2a$10$Y6s3Qk4u7JqNcJgMeIM.Z6MkglNpeN12J6i5l7ie7p4xdl7tsIR2a'); 
-
 
 CREATE TABLE IF NOT EXISTS public.quiz_scores (
   id SERIAL PRIMARY KEY,

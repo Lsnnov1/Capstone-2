@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { getRandomFoodImage } from '../api/api';
 
 const Image = () => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null); // { url, name }
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -49,9 +49,10 @@ const Image = () => {
           </div>
         ) : (
           <div className="image-card__frame">
-            <img src={image} alt="A random dish" className="food-image" />
+            <img src={image.url} alt={image.name} className="food-image" />
           </div>
         )}
+        {!loading && !error && image && <figcaption className="image-card__caption">{image.name}</figcaption>}
       </figure>
 
       <div className="centered-actions">
