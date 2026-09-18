@@ -44,7 +44,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "engines": {
-    "node": "20.11.1",
-    "npm": "10.2.4"
+    "node": "24.x"
   }
 }
