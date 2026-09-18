@@ -1,5 +1,5 @@
 import '../static/image.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getRandomFoodImage } from '../api/api';
 
 const Image = () => {
@@ -8,7 +8,7 @@ const Image = () => {
   const [error, setError] = useState('');
 
   // Fetching image function
-  const fetchImage = async () => {
+  const fetchImage = useCallback(async () => {
     setLoading(true);
     setError(''); // Reset error state before fetching a new image
     try {
@@ -16,36 +16,50 @@ const Image = () => {
       if (img) {
         setImage(img);
       } else {
-        setError('Failed to fetch image.');
+        setError("We couldn't fetch a food image right now.");
       }
     } catch (err) {
-      setError('Error fetching image.');
+      setError("We couldn't fetch a food image right now.");
     }
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     fetchImage(); // Fetch image when component mounts
-  }, []);
+  }, [fetchImage]);
 
   return (
-    <div className="image-container">
-      <h2>Random Food Image</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <div>
-          <div className="image-wrapper">
-            <img src={image} alt="Food" className="food-image" />
+    <main className="page">
+      <div className="page-head">
+        <h1>Random Food Image</h1>
+        <p className="lede">A new dish every time. See something you'd eat?</p>
+      </div>
+
+      <figure className="image-card">
+        {loading ? (
+          <div className="image-card__frame skeleton" aria-busy="true">
+            <span className="sr-only">Loading image…</span>
           </div>
-          <button onClick={fetchImage} className="load-image-button">
-            Get New Image
-          </button>
-        </div>
-      )}
-    </div>
+        ) : error ? (
+          <div className="image-card__frame state" role="alert">
+            <div className="state__icon" aria-hidden="true">
+              🍽️
+            </div>
+            <p>{error}</p>
+          </div>
+        ) : (
+          <div className="image-card__frame">
+            <img src={image} alt="A random dish" className="food-image" />
+          </div>
+        )}
+      </figure>
+
+      <div className="centered-actions">
+        <button type="button" onClick={fetchImage} className="btn btn-primary" disabled={loading}>
+          {error ? 'Try again' : 'Get new image'}
+        </button>
+      </div>
+    </main>
   );
 };
 

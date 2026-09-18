@@ -1,64 +1,139 @@
-.App {
+/* ---------- Home ---------- */
+.hero {
+  padding: 24px 0 40px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hero h1 {
+  max-width: 14ch;
+  margin: 0 auto 16px;
+  font-size: clamp(2.4rem, 7vw, 3.75rem);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hero__lede {
+  max-width: 46ch;
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.hero__cta {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 12px;
 }
 
-.App-link {
-  color: #61dafb;
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tile {
+  display: block;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-
-.app-container {
-  text-align: center;
-  padding: 20px;
+.tile:hover {
+  border-color: var(--primary);
+  color: var(--text);
+  transform: translateY(-2px);
 }
 
-.image-container img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
+.tile__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  background: var(--surface-2);
+  border-radius: 14px;
+  font-size: 1.5rem;
 }
 
-.quiz-container button {
-  margin: 5px;
+.tile h2 {
+  margin-bottom: 6px;
+  font-size: 1.25rem;
 }
 
-.options button {
-  padding: 10px 20px;
-  font-size: 16px;
+.tile p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.fact-container p {
-  font-style: italic;
+/* ---------- Auth + profile ---------- */
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 16px;
+  background: var(--primary);
+  border-radius: 50%;
+  color: var(--on-primary);
+  font: 700 2rem var(--font-display);
 }
 
+.profile h1 {
+  margin-bottom: 4px;
+  font-size: 1.9rem;
+  overflow-wrap: anywhere;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 24px 0;
+  padding: 16px 18px;
+  background: var(--surface-2);
+  border-radius: 12px;
+}
+
+.stat dt {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.stat dd {
+  margin: 0;
+  font: 700 1.75rem var(--font-display);
+}
+
+.profile__form {
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.profile__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile__row .input {
+  flex: 1 1 180px;
+}

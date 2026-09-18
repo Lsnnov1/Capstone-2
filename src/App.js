@@ -2,6 +2,7 @@ import './static/App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Image from './components/Image';
 import Fact from './components/Fact';
@@ -25,6 +26,7 @@ const App = () => {
     <Router>
       <Navbar token={token} setToken={setToken} />
       <Routes>
+        <Route path="/" element={<Home token={token} />} />
         <Route path="/trivia" element={<Quiz />} />
         <Route path="/image" element={<Image />} />
         <Route path="/facts" element={<Fact />} />
@@ -34,10 +36,7 @@ const App = () => {
           path="/profile"
           element={token ? <ProfilePage token={token} /> : <Navigate to="/login" />}
         />
-        <Route
-          path="*"
-          element={<div style={{ padding: '20px', textAlign: 'center' }}><h1>Welcome to Food Fun!</h1></div>}
-        />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

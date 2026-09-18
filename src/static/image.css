@@ -1,35 +1,73 @@
-.image-container {
-    text-align: center;
-    padding: 20px;
+/* ---------- Food images ---------- */
+.image-card {
+  margin: 0 0 24px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.image-card__frame {
+  aspect-ratio: 4 / 3;
+  background: var(--surface-2);
+}
+
+.food-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-card__frame.skeleton {
+  border-radius: 0;
+}
+
+.image-card__frame.state {
+  display: grid;
+  align-content: center;
+}
+
+.image-card__caption {
+  margin: 0;
+  padding: 14px 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.centered-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- Fun facts ---------- */
+.fact-card {
+  position: relative;
+  margin: 0 0 24px;
+  padding: 44px 32px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.fact-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 6px;
+  left: 22px;
+  color: var(--accent);
+  font: 700 5rem/1 var(--font-display);
+}
+
+.fact-card p {
+  margin: 0;
+  font: 600 clamp(1.3rem, 3.5vw, 1.65rem) / 1.4 var(--font-display);
+}
+
+@media (max-width: 520px) {
+  .fact-card {
+    padding: 44px 20px 24px;
   }
-  
-  .image-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .food-image {
-    border: 3px solid black;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .load-image-button {
-    background-color: #fa6b43;
-    color: white;
-    padding: 15px 30px;
-    font-size: 18px;
-    border: solid black 1px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .load-image-button:hover {
-    background-color: #e55c36;
-  }
-  
+}
